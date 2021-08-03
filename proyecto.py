@@ -14,28 +14,38 @@ def remove_duplicate(my_list:list) -> list:
     return uni_list
 
 def list_files(dir):
-    os.chdir(dir)
-    list_w_dir=remove_duplicate_lists(os.listdir())
-    yield  list_w_dir
-
+    try:
+        os.chdir(dir)
+        list_w_dir=remove_duplicate_lists(os.listdir())
+        yield  list_w_dir
+    except OSError as err:
+        print(err)
+        print('The location is not valid')
 
 def move_to(file,directories):
     for folder in directories:
         is_ext=re.compile(r'{}'.format(folder['re']))
         dest=folder['route']
         if is_ext.match(file):
-            shutil.move(file,dest)
+            try:
+                shutil.move(file,dest)
+                print(f'the file {file} was move to {dest}')
+            except shutil.Error() as er:
+                print(er)
+                print('the location to move is not valid')
+
 
 def run():
-    
+    print("starting program")
     dest_folders=config()['destination']
     read_folders=config()['directories']
     
     uni_dest_folders=remove_duplicate(dest_folders)
     uni_read_folders=remove_duplicate(read_folders)
-    print(uni_read_folders)
+    
     
     for folder in uni_read_folders:
+        print(f"reading files in {folder['route']}")
         files_to_move=list_files(folder['route'])
         for element in files_to_move:
             for name in element:
