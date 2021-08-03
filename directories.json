@@ -1,0 +1,47 @@
+{
+    "destination":[
+        {
+            "type": "images",
+            "route": "/mnt/c/Users/ELECTRO/Pictures/",
+            "re": ".*\\.jpg|.*\\.png|.*\\.gif|.*\\.bmp"
+        },
+        {
+            "type": "videos",
+            "route": "/mnt/c/Users/ELECTRO/Videos",
+            "re": ".*\\.mp4|.*\\.mpeg"
+        },
+        {
+            "type": "pdf",
+            "route": "/mnt/c/Users/ELECTRO/Documents/Mis Documentos/Temporal",
+            "re": ".*\\.pdf"
+        },
+        {
+            "type": "office",
+            "route": "/mnt/c/Users/ELECTRO/Documents/Mis Documentos/Temporal",
+            "re": ".*\\.doc|.*\\.xlsx|.*\\.pptx"
+        },
+        {
+            "type": "executable",
+            "route": "/mnt/c/Users/ELECTRO/Documents/Mis Documentos/Temporal/ejecutables",
+            "re": ".*\\.exe"
+        },
+        {
+            "type": "comprimed",
+            "route": "/mnt/c/Users/ELECTRO/Documents/Mis Documentos/Temporal/comprimidos",
+            "re": ".*\\.zip|.*\\.rar"
+        }
+
+       
+    ],
+    "directories":[
+        {
+            "name": "downloads",
+            "route": "/mnt/c/Users/ELECTRO/Downloads"
+        },
+        {
+            "name": "downloads",
+            "route": "/mnt/c/Users/ELECTRO/Downloads"
+        }
+    
+    ]
+}
