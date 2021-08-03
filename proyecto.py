@@ -2,10 +2,16 @@ import os
 import shutil
 import re
 from read_locations import config
-import pandas as pd
 import ast
+
 def remove_duplicate_lists(my_list :list) -> list:
     return list(set(my_list))
+
+def remove_duplicate(my_list:list) -> list:
+    str_list=[str(a) for a in my_list]
+    uni_set=set(str_list)
+    uni_list=[ast.literal_eval(item) for item in uni_set]
+    return uni_list
 
 def list_files(dir):
     os.chdir(dir)
@@ -24,19 +30,16 @@ def run():
     
     dest_folders=config()['destination']
     read_folders=config()['directories']
-    names=remove_duplicate_lists([folder['name'] for folder in read_folders])
-    unique=[str(a) for a in read_folders]
-    uni_set=set(unique)
-    unique=[ast.literal_eval(item) for item in uni_set]
-    # unique=pd.DataFrame(read_folders).drop_duplicates().to_dict('records')
-    print(unique)
     
-    # for dest in read_folders:
-    #     order_to_list = list_files(dest['route'])    
-    #     for element in order_to_list:
-    #         for name in element:
-    #             move_to(name,dest_folders)
-
+    uni_dest_folders=remove_duplicate(dest_folders)
+    uni_read_folders=remove_duplicate(read_folders)
+    print(uni_read_folders)
+    
+    for folder in uni_read_folders:
+        files_to_move=list_files(folder['route'])
+        for element in files_to_move:
+            for name in element:
+                move_to(name, uni_dest_folders)
         
 if __name__=="__main__":
     run()
