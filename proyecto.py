@@ -30,7 +30,7 @@ def move_to(file,directories):
             try:
                 shutil.move(file,dest)
                 print(f'the file {file} was move to {dest}')
-            except shutil.Error() as er:
+            except shutil.Error as er:
                 print(er)
                 print('the location to move is not valid')
 
